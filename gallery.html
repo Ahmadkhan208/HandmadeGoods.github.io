@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Handmade Haven Gallery - Explore handmade products by category." />
+  <title>Handmade Haven | Gallery</title>
+
+  <style>
+    :root{
+      --bg: #fffaf3;
+      --text: #2a2a2a;
+      --muted: #6a635b;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.10);
+      --accent: #d0702f;
+      --accent2: #8e5f14;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    img{ max-width: 100%; display:block; }
+
+    .container{
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    .muted{ color: var(--muted); }
+
+    header{
+      background:#f3e6d2;
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      padding:7px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .nav-right{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-right a{
+      font-weight:700;
+      color:#5b3a29;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s;
+    }
+    .nav-right a:hover{
+      background:rgba(201,107,44,0.15);
+    }
+    .logo-left{
+      font-size:22px;
+      font-weight:900;
+      color:#c96b2c;
+      letter-spacing:0.3px;
+      white-space:nowrap;
+    }
+
+
+    .menu-btn{
+      display:none;
+      border: 1px solid var(--border);
+      background:#fff;
+      padding: .5rem .75rem;
+      border-radius: .75rem;
+      cursor:pointer;
+      font-weight: 700;
+    }
+
+    nav.nav{
+      display:flex;
+      gap: 1rem;
+      align-items:center;
+    }
+    .nav-link{
+      padding: .45rem .6rem;
+      border-radius: .7rem;
+    }
+    .nav-link.active{
+      background: rgba(208,112,47,0.12);
+      border: 1px solid rgba(208,112,47,0.2);
+    }
+
+    /* Page header */
+    .page-hero{
+      padding: 1.6rem 0 1rem;
+    }
+    .page-hero h1{
+      margin: 0 0 .3rem;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+    .page-hero p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    /* Category blocks */
+    .section{
+      padding: 1.2rem 0 2.2rem;
+    }
+
+    .category-block{
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .category-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 1rem;
+      margin-bottom: .8rem;
+    }
+
+    .category-head h2{
+      margin: 0 0 .25rem;
+      font-size: 1.3rem;
+      color: var(--accent2);
+    }
+
+    .category-head p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    /* Arrows */
+    .arrows{
+      display:flex;
+      gap: .4rem;
+      flex-shrink: 0;
+    }
+
+    .arrow{
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor:pointer;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+    .arrow:focus{
+      outline: 2px solid rgba(47,107,88,0.35);
+      outline-offset: 2px;
+    }
+
+    /* Horizontal product row */
+    .category-row{
+      display:flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: .3rem;
+    }
+
+    .category-row::-webkit-scrollbar{ height: 10px; }
+    .category-row::-webkit-scrollbar-thumb{
+      background: rgba(0,0,0,0.15);
+      border-radius: 999px;
+    }
+
+    .product-card{
+      min-width: 240px;  
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .product-card img{
+      width:100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .product-body{
+      padding: .9rem;
+    }
+
+    .product-body h3{
+      margin: 0 0 .25rem;
+      font-size: 1.02rem;
+    }
+
+    .price{
+      margin: 0 0 .35rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .tag{
+      display:inline-block;
+      font-size: .85rem;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(47,107,88,0.25);
+      color: var(--accent2);
+      background: rgba(47,107,88,0.08);
+    }
+
+    /* Footer */
+    .site-footer{
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.65);
+      margin-top: 1rem;
+    }
+    footer{
+      background:#6b4f3f;
+      color:white;
+      text-align:center;
+      padding:18px 12px;
+      margin-top:10px;
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px){
+      .menu-btn{ display:inline-flex; }
+      nav.nav{
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        gap: .6rem;
+        padding: .8rem;
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        background:#fff;
+      }
+      nav.nav.open{ display:flex; }
+      .product-card{ min-width: 210px; }
+      .arrow{ width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    
+  <div class="logo-left">Handmade Heaven</div>
+
+  <nav class="nav-right">
+    <a href="index.html"><u>Home</u></a>
+    <a href="gallery.html"><u>Gallery</u></a>
+    <a href="blog.html"><u>Blog</u></a>
+    <a href="about.html"><u>About Us</u></a>
+  </nav>
+</header>
+
+
+  <!-- MAIN -->
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Gallery</h1>
+        <p>Discover handmade treasures across jewelry, home decor, knitting & crochet, and arts & crafts.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- JEWELRY -->
+        <section class="category-block" aria-labelledby="jewelry-title">
+          <div class="category-head">
+            <div>
+              <h2 id="jewelry-title">Jewelry</h2>
+              <p>Handmade accessories crafted with detail — perfect for gifts or everyday style.</p>
+            </div>
+            <div class="arrows" aria-label="Jewelry slider controls">
+              <button class="arrow" type="button" data-target="jewelry-row" data-dir="-1" aria-label="Previous jewelry items">❮</button>
+              <button class="arrow" type="button" data-target="jewelry-row" data-dir="1" aria-label="Next jewelry items">❯</button>
+            </div>
+          </div>
+
+          <div class="category-row" id="jewelry-row">
+            <article class="product-card">
+              <img src="assets/j1.png" alt="Handmade earrings" />
+              <div class="product-body">
+                <h3>Gemstone Earrings</h3>
+                <p class="price">£18.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/j2.png" alt="Handmade necklace" />
+              <div class="product-body">
+                <h3>Beaded Necklace</h3>
+                <p class="price">£24.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/j3.png" alt="Bracelet set" />
+              <div class="product-body">
+                <h3>Bracelet Set</h3>
+                <p class="price">£15.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/j4.png" alt="Handmade ring" />
+              <div class="product-body">
+                <h3>Minimal Ring</h3>
+                <p class="price">£12.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <!-- Extra cards to show sliding works -->
+            <article class="product-card">
+              <img src="assets/j5.png" alt="Handmade pendant" />
+              <div class="product-body">
+                <h3>Stone Pendant</h3>
+                <p class="price">£20.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- HOME DECOR -->
+        <section class="category-block" aria-labelledby="decor-title">
+          <div class="category-head">
+            <div>
+              <h2 id="decor-title">Home Decor</h2>
+              <p>Cozy, stylish pieces designed to bring warmth and character into your home.</p>
+            </div>
+            <div class="arrows" aria-label="Home decor slider controls">
+              <button class="arrow" type="button" data-target="decor-row" data-dir="-1" aria-label="Previous decor items">❮</button>
+              <button class="arrow" type="button" data-target="decor-row" data-dir="1" aria-label="Next decor items">❯</button>
+            </div>
+          </div>
+
+          <div class="category-row" id="decor-row">
+            <article class="product-card">
+              <img src="assets/d1.png" alt="Handmade candle" />
+              <div class="product-body">
+                <h3>Soy Candle</h3>
+                <p class="price">£10.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/d2.png" alt="Wall hanging decor" />
+              <div class="product-body">
+                <h3>Wall Hanging</h3>
+                <p class="price">£28.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/d3.png" alt="Ceramic vase" />
+              <div class="product-body">
+                <h3>Ceramic Vase</h3>
+                <p class="price">£25.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/d4.png" alt="Decorative basket" />
+              <div class="product-body">
+                <h3>Woven Basket</h3>
+                <p class="price">£16.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/d5.png" alt="Handmade table decor" />
+              <div class="product-body">
+                <h3>Table Centerpiece</h3>
+                <p class="price">£19.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- KNITTING & CROCHET -->
+        <section class="category-block" aria-labelledby="knit-title">
+          <div class="category-head">
+            <div>
+              <h2 id="knit-title">Knitting & Crochet</h2>
+              <p>Soft handmade items for comfort — scarves, mittens, hats and cute crochet pieces.</p>
+            </div>
+            <div class="arrows" aria-label="Knitting slider controls">
+              <button class="arrow" type="button" data-target="knit-row" data-dir="-1" aria-label="Previous knitting items">❮</button>
+              <button class="arrow" type="button" data-target="knit-row" data-dir="1" aria-label="Next knitting items">❯</button>
+            </div>
+          </div>
+
+          <div class="category-row" id="knit-row">
+            <article class="product-card">
+              <img src="assets/k1.png" alt="Knitted scarf" />
+              <div class="product-body">
+                <h3>Wool Scarf</h3>
+                <p class="price">£20.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/k2.webp" alt="Crochet toy" />
+              <div class="product-body">
+                <h3>Crochet Toy</h3>
+                <p class="price">£14.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/k3.jpg" alt="Knitted mittens" />
+              <div class="product-body">
+                <h3>Cozy Mittens</h3>
+                <p class="price">£22.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/k4.png" alt="Knitted hat" />
+              <div class="product-body">
+                <h3>Wool Hat</h3>
+                <p class="price">£16.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/k5.png" alt="Crochet bag" />
+              <div class="product-body">
+                <h3>Crochet Bag</h3>
+                <p class="price">£26.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ARTS & CRAFTS -->
+        <section class="category-block" aria-labelledby="arts-title">
+          <div class="category-head">
+            <div>
+              <h2 id="arts-title">Arts & Crafts</h2>
+              <p>Creative handmade gifts, prints, and craft items made by independent artists.</p>
+            </div>
+            <div class="arrows" aria-label="Arts slider controls">
+              <button class="arrow" type="button" data-target="arts-row" data-dir="-1" aria-label="Previous arts items">❮</button>
+              <button class="arrow" type="button" data-target="arts-row" data-dir="1" aria-label="Next arts items">❯</button>
+            </div>
+          </div>
+
+          <div class="category-row" id="arts-row">
+            <article class="product-card">
+              <img src="assets/a1.jpg" alt="Handmade art print" />
+              <div class="product-body">
+                <h3>Art Print</h3>
+                <p class="price">£11.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/a2.jpg" alt="Painted mug" />
+              <div class="product-body">
+                <h3>Painted Mug</h3>
+                <p class="price">£17.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/a3.jpg" alt="Craft" />
+              <div class="product-body">
+                <h3>DIY Craft</h3>
+                <p class="price">£13.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/a4.jpg" alt="Handmade notebook" />
+              <div class="product-body">
+                <h3>Art Notebook</h3>
+                <p class="price">£9.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img src="assets/a5.jpg" alt="Handmade greeting cards" />
+              <div class="product-body">
+                <h3>Greeting Cards</h3>
+                <p class="price">£8.00</p>
+                <span class="tag">Shop Now</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Handmade Heaven — Gallery Page
+  </footer>
+
+  <script>
+
+    const btn = document.querySelector(".menu-btn");
+    const nav = document.querySelector(".nav");
+
+    if (btn && nav) {
+      btn.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+   
+    function slideRow(rowId, direction){
+      const row = document.getElementById(rowId);
+      if (!row) return;
+
+      const scrollAmount = 260 * direction;
+      row.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+
+  
+    const arrowButtons = document.querySelectorAll(".arrow");
+    arrowButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        const dir = Number(btn.getAttribute("data-dir"));
+        slideRow(target, dir);
+      });
+    });
+  </script>
+</body>
+</html>
+
+

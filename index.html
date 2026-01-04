@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handmade Heaven | Ecommerce website for handmade goods</title>
+
+  <style>
+    /* ===== BASIC RESET ===== */
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:#fbf6ef;
+      color:#3c2a1f;
+      line-height:1.5;
+    }
+    a{ text-decoration:none; color:inherit; }
+
+    /* ===== HEADER (Nav Left, Logo Right) ===== */
+    header{
+      background:#f3e6d2;
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      padding:7px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .nav-right{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-right a{
+      font-weight:700;
+      color:#5b3a29;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s;
+    }
+    .nav-right a:hover{
+      background:rgba(201,107,44,0.15);
+    }
+    .logo-left{
+      font-size:22px;
+      font-weight:900;
+      color:#c96b2c;
+      letter-spacing:0.3px;
+      white-space:nowrap;
+    }
+
+    /* ===== HERO ===== */
+   .hero{
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 18px;
+
+  background: url("Assets/hero.png") center/cover no-repeat;
+
+}
+
+    .hero-box{
+  max-width:900px;
+  padding:0;
+   margin-top:350px;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  border-radius:0;
+  color:#3c2a1f;
+}
+
+    .hero-box h1{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+    .hero-box h1 span{
+      color:#c96b2c;
+    }
+    .hero-box h1, .hero-box p{
+  text-shadow: 0 2px 10px rgba(255,255,255,0.6);
+}
+.hero-tagline{
+  font-weight:700;
+  font-size:17px;
+  margin:10px 0 18px;
+}
+
+
+    .btn-row{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+  display:inline-block;
+  padding:11px 20px;
+  border-radius:30px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.btn.primary{
+  background:#c96b2c;
+  color:white;
+}
+
+.btn.outline{
+  border:2px solid #c96b2c;
+  color:#c96b2c;
+  background:transparent;
+}
+
+.btn.primary:hover{ opacity:0.85; }
+.btn.outline:hover{ background:#c96b2c; color:white; }
+
+
+    /* ===== SECTIONS ===== */
+    .section{
+      padding:46px 22px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .section-title{
+      text-align:center;
+      font-size:28px;
+      margin-bottom:18px;
+      color:#5b3a29;
+    }
+    .section-sub{
+      text-align:center;
+      max-width:700px;
+      margin:0 auto 26px;
+      color:#6b4f3f;
+      font-size:15px;
+    }
+
+    /* ===== FEATURED CATEGORIES GRID ===== */
+   .grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap:18px;
+  padding:20px 0;
+}
+
+
+@media (max-width:1000px){
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:600px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+    .card{
+      background:#fff8f0;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 10px 18px rgba(0,0,0,0.06);
+      transition:transform 0.2s;
+    }
+    .card:hover{ transform:translateY(-3px); }
+    .card{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  height:280px;
+  margin:0;           /* important */
+  max-width:none;     /* important */
+}
+
+
+.card img{
+  width:100%;
+  height:140px;        /* fixed banner height */
+  object-fit:cover;   /* image crop hogi, stretch nahi */
+  border-radius:20px 20px 0 0;
+}
+
+.card-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:10px;
+}
+
+    .mini-btn{
+      display:inline-block;
+      padding:9px 14px;
+      border-radius:999px;
+      background:#c96b2c;
+      color:white;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    /* ===== WHY CHOOSE (Optional small section like your screenshot) ===== */
+    .why{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+    }
+    .why-item{
+      background:white;
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:18px;
+      padding:16px;
+    }
+    .why-item h4{
+      margin-bottom:6px;
+      color:#5b3a29;
+    }
+    .why-item p{
+      color:#6b4f3f;
+      font-size:14px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      background:#6b4f3f;
+      color:white;
+      text-align:center;
+      padding:18px 12px;
+      margin-top:10px;
+      font-size:14px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:520px){
+      .hero-box h1{ font-size:30px; }
+      header{ padding:12px 16px; }
+      .logo-left{ font-size:20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    
+  <div class="logo-left">Handmade Heaven</div>
+
+  <nav class="nav-right">
+    <a href="index.html"><u>Home</u></a>
+    <a href="gallery.html"><u>Gallery</u></a>
+    <a href="blog.html"><u>Blog</u></a>
+    <a href="about.html"><u>About Us</u></a>
+  </nav>
+</header>
+
+  <!-- HERO IMAGE -->
+  <section class="hero">
+    <div class="hero-box">
+      <p class="hero-tagline">Your marketplace for unique & handcrafted treasures.</p>
+
+      <div class="btn-row">
+        <a class="btn primary" href="gallery.html">Shop Now</a>
+        <a class="btn outline" href="about.html">Learn More</a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CATEGORIES -->
+  <section class="section">
+  <h2 class="section-title">Featured Categories</h2>
+  <p class="section-sub">Explore handmade collections crafted with love — perfect for gifts, home styling, and personal expression.</p>
+
+  <div class="grid featured-grid">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="Assets/jewelry.png" alt="Jewelry">
+      <div class="card-body">
+        <h3>Jewelry</h3>
+        <a href="gallery.html" class="mini-btn">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="Assets/homedecor.png" alt="Home Decor">
+      <div class="card-body">
+        <h3>Home Décor</h3>
+        <a href="gallery.html" class="mini-btn">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="Assets/knitting.png" alt="Knitting and Crochet">
+      <div class="card-body">
+        <h3>Knitting & Crochet</h3>
+        <a href="gallery.html" class="mini-btn">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <img src="Assets/artcraft.png" alt="Art and Crafts">
+      <div class="card-body">
+        <h3>Art & Crafts</h3>
+        <a href="gallery.html" class="mini-btn">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- OPTIONAL: Why Choose (nice for marks, still simple) -->
+    <div class="why">
+      <div class="why-item">
+        <h4>Handcrafted Quality</h4>
+        <p>Every item is carefully made by artisans, not mass-produced.</p>
+      </div>
+      <div class="why-item">
+        <h4>Eco-Friendly Choices</h4>
+        <p>Support sustainable materials and mindful packaging.</p>
+      </div>
+      <div class="why-item">
+        <h4>Unique Designs</h4>
+        <p>Find one-of-a-kind pieces that tell a story.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+   
+  <footer>
+    © 2025 Handmade Heaven — Ecommerce website for handmade goods
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About | Handmade Heaven</title>
+
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:#fbf6ef;
+    color:#3c2a1f;
+    line-height:1.7;
+  }
+
+  /* HEADER */
+  header{
+    background:#f3e6d2;
+    padding:10px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  .logo-left{
+    font-size:22px;
+    font-weight:900;
+    color:#c96b2c;
+  }
+  .nav-right a{
+    margin-left:18px;
+    text-decoration:none;
+    color:#5b3a29;
+    font-weight:700;
+  }
+
+  /* PAGE WRAP */
+  .wrap{
+    max-width:1050px;
+    margin:0 auto;
+    padding:42px 20px;
+  }
+
+  .title{
+    text-align:center;
+    font-size:34px;
+    color:#5b3a29;
+    margin-bottom:10px;
+  }
+  .subtitle{
+    text-align:center;
+    color:#6b4f3f;
+    max-width:780px;
+    margin:0 auto 30px;
+  }
+
+  /* CONTENT BLOCKS */
+  .card{
+    background:#fff8f0;
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.06);
+    margin-bottom:18px;
+  }
+  .card h2{
+    color:#5b3a29;
+    margin-bottom:10px;
+    font-size:22px;
+  }
+  .card p{
+    color:#6b4f3f;
+    margin-bottom:10px;
+  }
+
+  /* 2 COLUMN TEXT SECTION */
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:18px;
+  }
+
+  /* LIST STYLE */
+  ul{
+    margin-left:18px;
+    color:#6b4f3f;
+  }
+  li{ margin:8px 0; }
+
+  /* HIGHLIGHT STRIP */
+  .highlight{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:14px;
+  }
+  .pill{
+    background:white;
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:16px;
+    padding:14px;
+  }
+  .pill h3{
+    color:#5b3a29;
+    margin-bottom:6px;
+    font-size:18px;
+  }
+  .pill p{
+    color:#6b4f3f;
+    font-size:14px;
+  }
+
+  /* FAQ (Accordion) */
+  .faq-item{
+    border-top:1px solid rgba(0,0,0,0.12);
+    padding:12px 0;
+  }
+  .faq-q{
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    font-weight:800;
+    color:#3c2a1f;
+    font-size:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .faq-a{
+    display:none;
+    margin-top:8px;
+    color:#6b4f3f;
+    padding-right:22px;
+  }
+
+  /* BUTTONS */
+  .btn-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:6px;
+  }
+  .btn{
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:999px;
+    font-weight:800;
+    text-decoration:none;
+    cursor:pointer;
+    transition:0.2s;
+    border:none;
+  }
+  .btn.primary{ background:#c96b2c; color:white; }
+  .btn.primary:hover{ opacity:0.9; }
+  .btn.outline{
+    border:2px solid #c96b2c;
+    background:transparent;
+    color:#c96b2c;
+  }
+  .btn.outline:hover{ background:#c96b2c; color:white; }
+
+  /* FOOTER */
+  footer{
+    background:#6b4f3f;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .two-col{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-left">Handmade Heaven</div>
+  <nav class="nav-right">
+    <a href="index.html">Home</a>
+     <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About Us</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <h1 class="title">About Handmade Heaven</h1>
+  <p class="subtitle">
+   Handmade Heaven is a platform for handmade goods, celebrating creativity, craftsmanship, and sustainable shopping through unique artisan products.
+  </p>
+
+  <div class="card">
+    <h2>Our Story</h2>
+    <p>
+      Handmade Heaven started with one simple idea: give talented makers a beautiful space to share their work.
+      We focus on products that feel personal — crafted by hand, with care, and attention to detail.
+    </p>
+    <p>
+      From delicate jewelry to cozy crochet, our marketplace connects customers with items that have meaning.
+    </p>
+    <div class="btn-row">
+      <a class="btn primary" href="gallery.html">Explore Products</a>
+      <a class="btn outline" href="blog.html">Read Stories</a>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h2>What We Sell</h2>
+      <p>Our featured handmade categories include:</p>
+      <ul>
+        <li><b>Jewelry</b> – earrings, bracelets, pendants, gemstone pieces</li>
+        <li><b>Home Décor</b> – candles, pottery, wall art, table décor</li>
+        <li><b>Knitting & Crochet</b> – scarves, mittens, soft accessories</li>
+        <li><b>Art & Crafts</b> – paintings, handmade cards, DIY crafts</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Our Values</h2>
+      <p>We believe handmade should be:</p>
+      <ul>
+        <li><b>Authentic:</b> real craftsmanship, not mass production</li>
+        <li><b>Sustainable:</b> mindful materials and packaging</li>
+        <li><b>Fair:</b> supporting small artists and local creators</li>
+        <li><b>Meaningful:</b> products that tell a story</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Why Choose Handmade Heaven?</h2>
+    <div class="highlight">
+      <div class="pill">
+        <h3>Unique Designs</h3>
+        <p>No two handmade items are exactly the same — your purchase feels special.</p>
+      </div>
+      <div class="pill">
+        <h3>Support Creators</h3>
+        <p>Your order helps small makers grow and continue their craft.</p>
+      </div>
+      <div class="pill">
+        <h3>Quality & Care</h3>
+        <p>Handmade items are crafted with attention and detail you can feel.</p>
+      </div>
+      <div class="pill">
+        <h3>Eco-Friendly</h3>
+        <p>We encourage sustainable choices and responsible shopping.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>FAQ</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Do you deliver internationally?
+        <span>+</span>
+      </button>
+      <div class="faq-a">
+        Yes, we can deliver internationally. Delivery depends on the product and seller location.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Are products fully handmade?
+        <span>+</span>
+      </button>
+      <div class="faq-a">
+        Our focus is handmade and artisan-made items. Each listing includes details about materials and process.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Can I request custom orders?
+        <span>+</span>
+      </button>
+      <div class="faq-a">
+        Yes! We accept customized orders (sizes, colors, names). Contact details are provided in listings.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 Handmade Heaven – About Page
+</footer>
+
+<script>
+  function toggleFAQ(btn){
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector("span");
+    if(answer.style.display === "block"){
+      answer.style.display = "none";
+      icon.textContent = "+";
+    } else {
+      answer.style.display = "block";
+      icon.textContent = "−";
+    }
+  }
+</script>
+
+</body>
+</html>
