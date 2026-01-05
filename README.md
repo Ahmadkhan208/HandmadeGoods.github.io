@@ -8,4 +8,4 @@ Pages:
 - Blog (`blog.html`)
 - About (`about.html`)
 
-Live site: https://ahmadkhan208.github.io/ecommereceweb/index.html
+Live site: https://ahmadkhan208.github.io/Handmadegoods.github.io/
